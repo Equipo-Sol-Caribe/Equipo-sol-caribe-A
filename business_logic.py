@@ -213,3 +213,49 @@ class CadenaHotelera:
                 if menor is None or hotel.porcentaje_ocupacion() < menor.porcentaje_ocupacion():
                     menor = hotel
         return menor
+
+    def cargar_hoteles(self, ruta: str) -> tuple[int, list[str]]:
+        with open(ruta, "r", encoding="utf-8") as archivo:
+            lineas = archivo.readlines()
+        cargados = 0
+        descartadas = []
+        # Decisión: se empieza en 1 para saltar el encabezado; el número de línea es i + 1.
+        for i in range(1, len(lineas)):
+            linea = lineas[i].strip()
+            if linea != "":
+                campos = linea.split(";")
+                if len(campos) != 5:
+                    mensaje = "No tiene cinco campos."
+                else:
+                    mensaje = self.crear_hotel(campos[0], campos[1], campos[2], campos[3], campos[4])
+                if mensaje == "":
+                    cargados = cargados + 1
+                else:
+                    descartadas.append(f"Línea {i + 1} descartada: {mensaje}")
+        return cargados, descartadas
+
+    def cargar_ocupacion(self, ruta: str) -> tuple[int, list[str]]:
+        with open(ruta, "r", encoding="utf-8") as archivo:
+            lineas = archivo.readlines()
+        cargados = 0
+        descartadas = []
+        for i in range(1, len(lineas)):
+            linea = lineas[i].strip()
+            if linea != "":
+                campos = linea.split(";")
+                hotel = self.buscar_hotel(campos[0])
+                if len(campos) != 2:
+                    mensaje = "No tiene dos campos."
+                elif hotel is None:
+                    mensaje = f"No hay un hotel llamado {campos[0].strip()}."
+                elif not es_entero(campos[1]):
+                    mensaje = "Las habitaciones ocupadas deben ser un número entero."
+                else:
+                    mensaje = hotel.validar_ocupadas(int(campos[1]))
+                    if mensaje == "":
+                        hotel.registrar_dia(int(campos[1]))
+                if mensaje == "":
+                    cargados = cargados + 1
+                else:
+                    descartadas.append(f"Línea {i + 1} descartada: {mensaje}")
+        return cargados, descartadas

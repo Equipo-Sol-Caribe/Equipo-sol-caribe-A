@@ -18,6 +18,7 @@ def mostrar_menu() -> None:
     print("3. Simular días")
     print("4. Ver el informe de un hotel")
     print("5. Ver el hotel con el porcentaje de ocupación más alto y el más bajo")
+    print("6. Cargar los hoteles y la ocupación desde archivos")
     print("7. Salir")
 
 
@@ -157,6 +158,37 @@ def opcion_comparar_hoteles(cadena: CadenaHotelera) -> None:
         print(f"Porcentaje de ocupación más bajo: {menor.nombre}, con {round(menor.porcentaje_ocupacion(), 2)} %")
 
 
+def opcion_cargar_archivos(cadena: CadenaHotelera) -> None:
+    if len(cadena.hoteles) > 0:
+        print("La carga solo se hace con el programa sin hoteles.")
+    else:
+        hoteles_cargados = False
+        ruta = input("Ruta del archivo de hoteles: ").strip()
+        try:
+            cargados, descartadas = cadena.cargar_hoteles(ruta)
+            for mensaje in descartadas:
+                print(mensaje)
+            print(f"Hoteles cargados: {cargados}")
+            hoteles_cargados = True
+        except FileNotFoundError:
+            print("El archivo no existe.")
+        except (OSError, UnicodeDecodeError):
+            # Decisión: por si la ruta es una carpeta o el archivo no está guardado en UTF-8.
+            print("No se pudo leer el archivo.")
+
+        if hoteles_cargados:
+            ruta = input("Ruta del archivo de ocupación: ").strip()
+            try:
+                cargados, descartadas = cadena.cargar_ocupacion(ruta)
+                for mensaje in descartadas:
+                    print(mensaje)
+                print(f"Días cargados: {cargados}")
+            except FileNotFoundError:
+                print("El archivo no existe. Los hoteles quedan cargados, sin días registrados.")
+            except (OSError, UnicodeDecodeError):
+                print("No se pudo leer el archivo. Los hoteles quedan cargados, sin días registrados.")
+
+
 def opcion_salir(cadena: CadenaHotelera) -> None:
     print("Fin del programa.")
 
@@ -178,6 +210,8 @@ def main() -> None:
             opcion_ver_informe(cadena, date.today())
         elif opcion == "5":
             opcion_comparar_hoteles(cadena)
+        elif opcion == "6":
+            opcion_cargar_archivos(cadena)
         elif opcion == "7":
             opcion_salir(cadena)
             salir = True
