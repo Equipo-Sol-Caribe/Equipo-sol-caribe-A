@@ -1,3 +1,4 @@
+import random
 from datetime import date, timedelta
 
 
@@ -17,6 +18,16 @@ def crear_fecha(anio: str, mes: str, dia: str) -> date | None:
     except ValueError:
         fecha = None
     return fecha
+
+
+def validar_dias_a_simular(dias: int) -> str:
+    mensaje = ""
+    if dias < 1:
+        mensaje = "Se debe simular al menos un día."
+    elif dias > 365:
+        # Decisión: máximo 365 días por simulación para que el programa no se quede pegado.
+        mensaje = "Se pueden simular máximo 365 días cada vez."
+    return mensaje
 
 
 class Hotel:
@@ -41,6 +52,24 @@ class Hotel:
         if len(self.ocupadas) > 0:
             ultimo = self.fecha_del_dia(len(self.ocupadas) - 1)
         return ultimo
+
+    def validar_ocupadas(self, cantidad: int) -> str:
+        mensaje = ""
+        if cantidad < 0 or cantidad > self.habitaciones:
+            mensaje = f"Las habitaciones ocupadas de {self.nombre} van de 0 a {self.habitaciones}."
+        return mensaje
+
+    def registrar_dia(self, cantidad: int) -> None:
+        self.ocupadas.append(cantidad)
+
+    def simular_dias(self, dias: int, minimo: int, maximo: int) -> str:
+        mensaje = ""
+        if minimo > maximo:
+            mensaje = "El mínimo no puede ser mayor que el máximo."
+        else:
+            for i in range(dias):
+                self.ocupadas.append(random.randint(minimo, maximo))
+        return mensaje
 
 
 class CadenaHotelera:
