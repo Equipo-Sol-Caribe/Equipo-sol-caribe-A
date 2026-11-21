@@ -122,6 +122,49 @@ class Hotel:
             dia = self.fecha_del_dia(posicion_menor)
         return dia
 
+    def nivel_del_dia(self, cantidad: int) -> str:
+        porcentaje = cantidad / self.habitaciones * 100
+        if porcentaje < 40:
+            nivel = "crítica"
+        elif porcentaje < 60:
+            nivel = "baja"
+        elif porcentaje < 80:
+            nivel = "media"
+        else:
+            nivel = "alta"
+        return nivel
+
+    def contar_niveles(self) -> dict[str, int]:
+        niveles = {"crítica": 0, "baja": 0, "media": 0, "alta": 0}
+        for cantidad in self.ocupadas:
+            nivel = self.nivel_del_dia(cantidad)
+            niveles[nivel] = niveles[nivel] + 1
+        return niveles
+
+    def racha_critica_mas_larga(self) -> tuple[int, date | None]:
+        racha_actual = 0
+        racha_mayor = 0
+        inicio_mayor = 0
+        for i in range(len(self.ocupadas)):
+            if self.nivel_del_dia(self.ocupadas[i]) == "crítica":
+                racha_actual = racha_actual + 1
+                if racha_actual > racha_mayor:
+                    racha_mayor = racha_actual
+                    inicio_mayor = i - racha_actual + 1
+            else:
+                racha_actual = 0
+        inicio = None
+        if racha_mayor > 0:
+            inicio = self.fecha_del_dia(inicio_mayor)
+        return racha_mayor, inicio
+
+    def dias_sin_registrar(self, hoy: date) -> int:
+        faltan = (hoy - self.fecha_siguiente()).days
+        # Decisión: si da negativo es porque se simularon días hasta después de hoy.
+        if faltan < 0:
+            faltan = 0
+        return faltan
+
 
 class CadenaHotelera:
     def __init__(self) -> None:

@@ -1,4 +1,5 @@
 import os
+from datetime import date, timedelta
 
 from business_logic import CadenaHotelera, Hotel, validar_dias_a_simular
 
@@ -106,7 +107,7 @@ def opcion_simular_dias(cadena: CadenaHotelera) -> None:
                 print(mensaje)
 
 
-def opcion_ver_informe(cadena: CadenaHotelera) -> None:
+def opcion_ver_informe(cadena: CadenaHotelera, hoy: date) -> None:
     hotel = pedir_hotel(cadena)
     if hotel is not None:
         print()
@@ -122,6 +123,27 @@ def opcion_ver_informe(cadena: CadenaHotelera) -> None:
             print(f"Desviación estándar: {round(hotel.desviacion_estandar(), 2)}")
             print(f"Día con más habitaciones ocupadas: {hotel.dia_mas_ocupado()}")
             print(f"Día con menos habitaciones ocupadas: {hotel.dia_menos_ocupado()}")
+
+            niveles = hotel.contar_niveles()
+            print("Días en cada nivel de ocupación:")
+            print(f"  Crítica: {niveles['crítica']}")
+            print(f"  Baja: {niveles['baja']}")
+            print(f"  Media: {niveles['media']}")
+            print(f"  Alta: {niveles['alta']}")
+
+            dias_racha, inicio_racha = hotel.racha_critica_mas_larga()
+            if dias_racha == 0:
+                print("El hotel no tuvo ningún día en ocupación crítica.")
+            else:
+                print(f"Racha más larga en ocupación crítica: {dias_racha} día(s), desde el {inicio_racha}")
+
+            print(f"Último día registrado: {hotel.ultimo_dia()}")
+            faltan = hotel.dias_sin_registrar(hoy)
+            if faltan == 0:
+                print("El registro está al día.")
+            else:
+                ayer = hoy - timedelta(days=1)
+                print(f"Días que faltan por registrar: {faltan}, del {hotel.fecha_siguiente()} al {ayer}")
 
 
 def opcion_salir(cadena: CadenaHotelera) -> None:
@@ -142,7 +164,7 @@ def main() -> None:
         elif opcion == "3":
             opcion_simular_dias(cadena)
         elif opcion == "4":
-            opcion_ver_informe(cadena)
+            opcion_ver_informe(cadena, date.today())
         elif opcion == "7":
             opcion_salir(cadena)
             salir = True
