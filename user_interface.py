@@ -15,6 +15,7 @@ def mostrar_menu() -> None:
     print("1. Crear un hotel")
     print("2. Registrar las habitaciones ocupadas del día siguiente")
     print("3. Simular días")
+    print("4. Ver el informe de un hotel")
     print("7. Salir")
 
 
@@ -105,6 +106,24 @@ def opcion_simular_dias(cadena: CadenaHotelera) -> None:
                 print(mensaje)
 
 
+def opcion_ver_informe(cadena: CadenaHotelera) -> None:
+    hotel = pedir_hotel(cadena)
+    if hotel is not None:
+        print()
+        print(f"Hotel: {hotel.nombre}")
+        print(f"Habitaciones habilitadas: {hotel.habitaciones}")
+        if hotel.dias_registrados() == 0:
+            print("El hotel no tiene días registrados.")
+        else:
+            print(f"Días registrados: {hotel.dias_registrados()}")
+            print(f"Noches vendidas: {hotel.noches_vendidas()}")
+            print(f"Promedio de habitaciones ocupadas por día: {round(hotel.promedio(), 2)}")
+            print(f"Porcentaje de ocupación: {round(hotel.porcentaje_ocupacion(), 2)} %")
+            print(f"Desviación estándar: {round(hotel.desviacion_estandar(), 2)}")
+            print(f"Día con más habitaciones ocupadas: {hotel.dia_mas_ocupado()}")
+            print(f"Día con menos habitaciones ocupadas: {hotel.dia_menos_ocupado()}")
+
+
 def opcion_salir(cadena: CadenaHotelera) -> None:
     print("Fin del programa.")
 
@@ -122,6 +141,8 @@ def main() -> None:
             opcion_registrar_dia(cadena)
         elif opcion == "3":
             opcion_simular_dias(cadena)
+        elif opcion == "4":
+            opcion_ver_informe(cadena)
         elif opcion == "7":
             opcion_salir(cadena)
             salir = True

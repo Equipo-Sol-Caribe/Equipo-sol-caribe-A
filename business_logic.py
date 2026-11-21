@@ -1,3 +1,4 @@
+import math
 import random
 from datetime import date, timedelta
 
@@ -70,6 +71,56 @@ class Hotel:
             for i in range(dias):
                 self.ocupadas.append(random.randint(minimo, maximo))
         return mensaje
+
+    def noches_vendidas(self) -> int:
+        total = 0
+        for cantidad in self.ocupadas:
+            total = total + cantidad
+        return total
+
+    def promedio(self) -> float:
+        resultado = 0.0
+        # Decisión: sin días registrados se devuelve 0 para no dividir entre cero.
+        if len(self.ocupadas) > 0:
+            resultado = self.noches_vendidas() / len(self.ocupadas)
+        return resultado
+
+    def porcentaje_ocupacion(self) -> float:
+        resultado = 0.0
+        if len(self.ocupadas) > 0:
+            resultado = self.promedio() / self.habitaciones * 100
+        return resultado
+
+    def desviacion_estandar(self) -> float:
+        resultado = 0.0
+        if len(self.ocupadas) > 0:
+            promedio = self.promedio()
+            suma = 0.0
+            for cantidad in self.ocupadas:
+                suma = suma + (cantidad - promedio) ** 2
+            resultado = math.sqrt(suma / len(self.ocupadas))
+        return resultado
+
+    def dia_mas_ocupado(self) -> date | None:
+        dia = None
+        if len(self.ocupadas) > 0:
+            posicion_mayor = 0
+            for i in range(len(self.ocupadas)):
+                # Decisión: con > (y no >=) en un empate se queda el primer día.
+                if self.ocupadas[i] > self.ocupadas[posicion_mayor]:
+                    posicion_mayor = i
+            dia = self.fecha_del_dia(posicion_mayor)
+        return dia
+
+    def dia_menos_ocupado(self) -> date | None:
+        dia = None
+        if len(self.ocupadas) > 0:
+            posicion_menor = 0
+            for i in range(len(self.ocupadas)):
+                if self.ocupadas[i] < self.ocupadas[posicion_menor]:
+                    posicion_menor = i
+            dia = self.fecha_del_dia(posicion_menor)
+        return dia
 
 
 class CadenaHotelera:
