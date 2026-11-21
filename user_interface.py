@@ -104,7 +104,7 @@ def opcion_simular_dias(cadena: CadenaHotelera) -> None:
             mensaje = hotel.simular_dias(dias, minimo, maximo)
             if mensaje == "":
                 print(f"Se simularon {dias} día(s).")
-                print(f"Habitaciones ocupadas simuladas: {hotel.ocupadas[-dias:]}")
+                print(f"Habitaciones ocupadas simuladas: {hotel.ultimos_dias(dias)}")
             else:
                 print(mensaje)
 

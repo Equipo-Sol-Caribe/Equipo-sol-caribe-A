@@ -18,6 +18,9 @@ def crear_fecha(anio: str, mes: str, dia: str) -> date | None:
         fecha = date(int(anio), int(mes), int(dia))
     except ValueError:
         fecha = None
+    except OverflowError:
+        # Decisión: con un año gigante Python lanza OverflowError en vez de ValueError.
+        fecha = None
     return fecha
 
 
@@ -72,6 +75,16 @@ class Hotel:
                 self.ocupadas.append(random.randint(minimo, maximo))
         return mensaje
 
+    def ultimos_dias(self, dias: int) -> list[int]:
+        inicio = len(self.ocupadas) - dias
+        # Decisión: si piden más días de los que hay, se devuelven todos los que hay.
+        if inicio < 0:
+            inicio = 0
+        ultimos = []
+        for i in range(inicio, len(self.ocupadas)):
+            ultimos.append(self.ocupadas[i])
+        return ultimos
+
     def noches_vendidas(self) -> int:
         total = 0
         for cantidad in self.ocupadas:
@@ -88,7 +101,9 @@ class Hotel:
     def porcentaje_ocupacion(self) -> float:
         resultado = 0.0
         if len(self.ocupadas) > 0:
-            resultado = self.promedio() / self.habitaciones * 100
+            # Decisión: se divide una sola vez porque promedio / habitaciones * 100 da 48.0 en un
+            # hotel y 48.00000000000001 en otro con el mismo 48 %, y el empate saldría mal.
+            resultado = self.noches_vendidas() * 100 / (len(self.ocupadas) * self.habitaciones)
         return resultado
 
     def desviacion_estandar(self) -> float:
@@ -194,6 +209,10 @@ class CadenaHotelera:
             mensaje = "El hotel debe tener al menos una habitación habilitada."
         elif fecha is None:
             mensaje = "La fecha no es válida."
+        elif fecha.year < 2000 or fecha.year > 2100:
+            # Decisión: con un año como 9999 el registro se pasaría del 31-12-9999,
+            # la última fecha que maneja Python, y el programa se caería.
+            mensaje = "El año de inicio debe estar entre 2000 y 2100."
         else:
             self.hoteles.append(Hotel(nombre, int(habitaciones), fecha))
         return mensaje
@@ -243,17 +262,18 @@ class CadenaHotelera:
             linea = lineas[i].strip()
             if linea != "":
                 campos = linea.split(";")
-                hotel = self.buscar_hotel(campos[0])
                 if len(campos) != 2:
                     mensaje = "No tiene dos campos."
-                elif hotel is None:
-                    mensaje = f"No hay un hotel llamado {campos[0].strip()}."
-                elif not es_entero(campos[1]):
-                    mensaje = "Las habitaciones ocupadas deben ser un número entero."
                 else:
-                    mensaje = hotel.validar_ocupadas(int(campos[1]))
-                    if mensaje == "":
-                        hotel.registrar_dia(int(campos[1]))
+                    hotel = self.buscar_hotel(campos[0])
+                    if hotel is None:
+                        mensaje = f"No hay un hotel llamado {campos[0].strip()}."
+                    elif not es_entero(campos[1]):
+                        mensaje = "Las habitaciones ocupadas deben ser un número entero."
+                    else:
+                        mensaje = hotel.validar_ocupadas(int(campos[1]))
+                        if mensaje == "":
+                            hotel.registrar_dia(int(campos[1]))
                 if mensaje == "":
                     cargados = cargados + 1
                 else:
