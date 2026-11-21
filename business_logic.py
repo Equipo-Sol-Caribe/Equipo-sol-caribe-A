@@ -197,3 +197,19 @@ class CadenaHotelera:
         else:
             self.hoteles.append(Hotel(nombre, int(habitaciones), fecha))
         return mensaje
+
+    def hotel_mas_ocupado(self) -> Hotel | None:
+        mayor = None
+        for hotel in self.hoteles:
+            if hotel.dias_registrados() > 0:
+                if mayor is None or hotel.porcentaje_ocupacion() > mayor.porcentaje_ocupacion():
+                    mayor = hotel
+        return mayor
+
+    def hotel_menos_ocupado(self) -> Hotel | None:
+        menor = None
+        for hotel in self.hoteles:
+            if hotel.dias_registrados() > 0:
+                if menor is None or hotel.porcentaje_ocupacion() < menor.porcentaje_ocupacion():
+                    menor = hotel
+        return menor

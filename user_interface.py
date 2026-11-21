@@ -17,6 +17,7 @@ def mostrar_menu() -> None:
     print("2. Registrar las habitaciones ocupadas del día siguiente")
     print("3. Simular días")
     print("4. Ver el informe de un hotel")
+    print("5. Ver el hotel con el porcentaje de ocupación más alto y el más bajo")
     print("7. Salir")
 
 
@@ -146,6 +147,16 @@ def opcion_ver_informe(cadena: CadenaHotelera, hoy: date) -> None:
                 print(f"Días que faltan por registrar: {faltan}, del {hotel.fecha_siguiente()} al {ayer}")
 
 
+def opcion_comparar_hoteles(cadena: CadenaHotelera) -> None:
+    mayor = cadena.hotel_mas_ocupado()
+    menor = cadena.hotel_menos_ocupado()
+    if mayor is None or menor is None:
+        print("Ningún hotel tiene días registrados.")
+    else:
+        print(f"Porcentaje de ocupación más alto: {mayor.nombre}, con {round(mayor.porcentaje_ocupacion(), 2)} %")
+        print(f"Porcentaje de ocupación más bajo: {menor.nombre}, con {round(menor.porcentaje_ocupacion(), 2)} %")
+
+
 def opcion_salir(cadena: CadenaHotelera) -> None:
     print("Fin del programa.")
 
@@ -165,6 +176,8 @@ def main() -> None:
             opcion_simular_dias(cadena)
         elif opcion == "4":
             opcion_ver_informe(cadena, date.today())
+        elif opcion == "5":
+            opcion_comparar_hoteles(cadena)
         elif opcion == "7":
             opcion_salir(cadena)
             salir = True
