@@ -190,6 +190,15 @@ def opcion_cargar_archivos(cadena: CadenaHotelera) -> None:
 
 
 def opcion_salir(cadena: CadenaHotelera) -> None:
+    if len(cadena.hoteles) > 0:
+        respuesta = input("¿Desea guardar los datos antes de salir? (s/n): ").strip().lower()
+        if respuesta == "s":
+            try:
+                cadena.guardar("hoteles_guardados.csv", "ocupacion_guardada.csv")
+                print("Datos guardados en hoteles_guardados.csv y ocupacion_guardada.csv.")
+                print("La próxima vez se pueden cargar con la opción 6.")
+            except OSError:
+                print("No se pudieron guardar los datos.")
     print("Fin del programa.")
 
 

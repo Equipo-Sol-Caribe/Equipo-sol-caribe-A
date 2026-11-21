@@ -259,3 +259,16 @@ class CadenaHotelera:
                 else:
                     descartadas.append(f"Línea {i + 1} descartada: {mensaje}")
         return cargados, descartadas
+
+    def guardar(self, ruta_hoteles: str, ruta_ocupacion: str) -> None:
+        # Decisión: requisito que agregamos para no perder los datos al cerrar el programa.
+        with open(ruta_hoteles, "w", encoding="utf-8") as archivo:
+            archivo.write("hotel;habitaciones_habilitadas;año;mes;día\n")
+            for hotel in self.hoteles:
+                fecha = hotel.fecha_inicio
+                archivo.write(f"{hotel.nombre};{hotel.habitaciones};{fecha.year};{fecha.month};{fecha.day}\n")
+        with open(ruta_ocupacion, "w", encoding="utf-8") as archivo:
+            archivo.write("hotel;habitaciones_ocupadas\n")
+            for hotel in self.hoteles:
+                for cantidad in hotel.ocupadas:
+                    archivo.write(f"{hotel.nombre};{cantidad}\n")
