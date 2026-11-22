@@ -201,6 +201,10 @@ class CadenaHotelera:
         mensaje = ""
         if nombre == "":
             mensaje = "El nombre no puede estar vacío."
+        elif ";" in nombre:
+            # Decisión: el punto y coma separa los campos del CSV. Un nombre con ";" se guardaba
+            # al salir, pero al cargarlo otra vez la línea tenía seis campos y el hotel se perdía.
+            mensaje = "El nombre no puede tener punto y coma (;)."
         elif self.buscar_hotel(nombre) is not None:
             mensaje = f"Ya existe un hotel llamado {nombre}."
         elif not es_entero(habitaciones):
