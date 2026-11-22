@@ -11,7 +11,7 @@ Integrantes
 
 Video explicativo
 
-Enlace del video: 
+Enlace del video: https://universidadmag-my.sharepoint.com/:v:/g/personal/mjvergara_unimagdalena_edu_co/IQCaI8fFjlBrSbxAkX-bZ_TvAQh_a636yrVq7SZY7Ls_M78?e=2WH7UR&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D
 
 Archivos del proyecto
 
