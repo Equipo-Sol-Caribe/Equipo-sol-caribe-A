@@ -52,9 +52,8 @@ def opcion_registrar_dia(cadena: CadenaHotelera) -> None:
         while not registrado:
             try:
                 cantidad = int(input(f"Habitaciones ocupadas del {fecha}: "))
-                mensaje = hotel.validar_ocupadas(cantidad)
+                mensaje = hotel.registrar_dia(cantidad)
                 if mensaje == "":
-                    hotel.registrar_dia(cantidad)
                     registrado = True
                     print(f"Se registró el día {fecha}.")
                 else:

@@ -63,14 +63,25 @@ class Hotel:
             mensaje = f"Las habitaciones ocupadas de {self.nombre} van de 0 a {self.habitaciones}."
         return mensaje
 
-    def registrar_dia(self, cantidad: int) -> None:
-        self.ocupadas.append(cantidad)
+    def registrar_dia(self, cantidad: int) -> str:
+        # Decisión: el método valida por su cuenta y devuelve el mensaje, para que ningún
+        # camino (la consola, el CSV u otra interfaz) pueda registrar un día fuera de rango.
+        mensaje = self.validar_ocupadas(cantidad)
+        if mensaje == "":
+            self.ocupadas.append(cantidad)
+        return mensaje
 
     def simular_dias(self, dias: int, minimo: int, maximo: int) -> str:
-        mensaje = ""
-        if minimo > maximo:
+        # Decisión: se valida todo aquí aunque la consola ya lo valide antes. La consola
+        # valida para no seguir preguntando; este método valida para proteger los datos.
+        mensaje = validar_dias_a_simular(dias)
+        if mensaje == "":
+            mensaje = self.validar_ocupadas(minimo)
+        if mensaje == "":
+            mensaje = self.validar_ocupadas(maximo)
+        if mensaje == "" and minimo > maximo:
             mensaje = "El mínimo no puede ser mayor que el máximo."
-        else:
+        if mensaje == "":
             for i in range(dias):
                 self.ocupadas.append(random.randint(minimo, maximo))
         return mensaje
@@ -275,9 +286,7 @@ class CadenaHotelera:
                     elif not es_entero(campos[1]):
                         mensaje = "Las habitaciones ocupadas deben ser un número entero."
                     else:
-                        mensaje = hotel.validar_ocupadas(int(campos[1]))
-                        if mensaje == "":
-                            hotel.registrar_dia(int(campos[1]))
+                        mensaje = hotel.registrar_dia(int(campos[1]))
                 if mensaje == "":
                     cargados = cargados + 1
                 else:
