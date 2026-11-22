@@ -190,7 +190,12 @@ def opcion_cargar_archivos(cadena: CadenaHotelera) -> None:
 
 def opcion_salir(cadena: CadenaHotelera) -> None:
     if len(cadena.hoteles) > 0:
+        # Decisión: se pregunta hasta que la respuesta sea s o n. Antes cualquier otra cosa,
+        # como "si" o "sí", contaba como no y el programa cerraba sin guardar.
         respuesta = input("¿Desea guardar los datos antes de salir? (s/n): ").strip().lower()
+        while respuesta != "s" and respuesta != "n":
+            print("Responda s o n.")
+            respuesta = input("¿Desea guardar los datos antes de salir? (s/n): ").strip().lower()
         if respuesta == "s":
             try:
                 cadena.guardar("hoteles_guardados.csv", "ocupacion_guardada.csv")
