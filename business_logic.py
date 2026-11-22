@@ -149,7 +149,9 @@ class Hotel:
         return dia
 
     def nivel_del_dia(self, cantidad: int) -> str:
-        porcentaje = cantidad / self.habitaciones * 100
+        # Decisión: una sola división, como en porcentaje_ocupacion. Así el 40, el 60 y el 80
+        # exactos dan justo 40.0, 60.0 y 80.0, sin depender del redondeo de otra operación.
+        porcentaje = cantidad * 100 / self.habitaciones
         if porcentaje < 40:
             nivel = "crítica"
         elif porcentaje < 60:
