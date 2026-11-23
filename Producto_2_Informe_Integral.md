@@ -154,7 +154,7 @@ classDiagram
         +fecha_siguiente() date
         +ultimo_dia() date o None
         +validar_ocupadas(cantidad) str
-        +registrar_dia(cantidad) None
+        +registrar_dia(cantidad) str
         +simular_dias(dias, minimo, maximo) str
         +ultimos_dias(dias) list
         +noches_vendidas() int

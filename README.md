@@ -18,8 +18,12 @@ Archivos del proyecto
 - `business_logic.py`: tiene las clases `Hotel` y `CadenaHotelera` con la lógica, validaciones, cálculos y lectura/escritura de los archivos CSV.
 - `user_interface.py`: contiene el menú por consola y todo lo que interactúa con el usuario.
 - `datos/`: carpeta con los archivos `.csv` de prueba (hoteles y ocupación).
-- `CASOS_DE_VERIFICACION.md`: casos que probamos para revisar errores y verificar que todo cumpliera el enunciado.
-- Documentos del proyecto en PDF (análisis, informe integral e informe de uso de IA) y carpeta `evidencias_ia/`.
+- `casos_de_verificaci_n_sol_caribe.md`: casos probados para revisar errores y verificar el cumplimiento del enunciado.
+- `Producto_1_Documento_de_Analisis.md`: documento de análisis.
+- `Producto_2_Informe_Integral.md`: informe integral del desarrollo, decisiones y verificación.
+- `Producto_5_Informe_Uso_IA.md`: informe formal y verificable del uso de IA generativa.
+- `evidencias_ia/`: índice de enlaces y evidencias asociadas al informe de IA.
+- `datos/`: archivos CSV usados para comprobar la carga y persistencia.
 
  Qué permite hacer el programa
 
