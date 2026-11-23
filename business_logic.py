@@ -89,8 +89,7 @@ class Hotel:
     def ultimos_dias(self, dias: int) -> list[int]:
         inicio = len(self.ocupadas) - dias
         # Decisión: si piden más días de los que hay, se devuelven todos los que hay.
-        if inicio < 0:
-            inicio = 0
+        inicio = inicio if inicio >= 0 else 0  # noqa: FURB136 - regla explicita del curso
         ultimos = []
         for i in range(inicio, len(self.ocupadas)):
             ultimos.append(self.ocupadas[i])
@@ -189,8 +188,7 @@ class Hotel:
     def dias_sin_registrar(self, hoy: date) -> int:
         faltan = (hoy - self.fecha_siguiente()).days
         # Decisión: si da negativo es porque se simularon días hasta después de hoy.
-        if faltan < 0:
-            faltan = 0
+        faltan = faltan if faltan >= 0 else 0  # noqa: FURB136 - regla explicita del curso
         return faltan
 
 
@@ -237,17 +235,19 @@ class CadenaHotelera:
     def hotel_mas_ocupado(self) -> Hotel | None:
         mayor = None
         for hotel in self.hoteles:
-            if hotel.dias_registrados() > 0:
-                if mayor is None or hotel.porcentaje_ocupacion() > mayor.porcentaje_ocupacion():
-                    mayor = hotel
+            if hotel.dias_registrados() > 0 and (
+                mayor is None or hotel.porcentaje_ocupacion() > mayor.porcentaje_ocupacion()
+            ):
+                mayor = hotel
         return mayor
 
     def hotel_menos_ocupado(self) -> Hotel | None:
         menor = None
         for hotel in self.hoteles:
-            if hotel.dias_registrados() > 0:
-                if menor is None or hotel.porcentaje_ocupacion() < menor.porcentaje_ocupacion():
-                    menor = hotel
+            if hotel.dias_registrados() > 0 and (
+                menor is None or hotel.porcentaje_ocupacion() < menor.porcentaje_ocupacion()
+            ):
+                menor = hotel
         return menor
 
     def cargar_hoteles(self, ruta: str) -> tuple[int, list[str]]:
@@ -304,6 +304,8 @@ class CadenaHotelera:
                 archivo.write(f"{hotel.nombre};{hotel.habitaciones};{fecha.year};{fecha.month};{fecha.day}\n")
         with open(ruta_ocupacion, "w", encoding="utf-8") as archivo:
             archivo.write("hotel;habitaciones_ocupadas\n")
+            lineas_ocupacion = []
             for hotel in self.hoteles:
                 for cantidad in hotel.ocupadas:
-                    archivo.write(f"{hotel.nombre};{cantidad}\n")
+                    lineas_ocupacion.append(f"{hotel.nombre};{cantidad}\n")
+            archivo.writelines(lineas_ocupacion)
