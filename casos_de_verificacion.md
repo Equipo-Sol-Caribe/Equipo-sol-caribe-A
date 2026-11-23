@@ -156,9 +156,9 @@ Por ultimo, probamos validaciones del menu principal y la opcion 7 (salir):
 
 La opcion de guardar al salir fue el requisito adicional que decidimos incluir como equipo para poder conservar los datos entre una ejecucion y otra sin tener que digitar todo de nuevo.
 
-## 6. Casos adicionales mostrados en el video
+## 6. Casos de verificacion adicionales mostrados en el video
 
-Ademas de los 77 casos detallados en las secciones anteriores, el video presenta 14 demostraciones integrales. Se incluyen aqui para que el documento tenga los 91 casos mencionados en la presentacion. Estas demostraciones recorren el programa completo y tambien dejan evidencia de los mensajes y archivos que se muestran en pantalla.
+Ademas de los 77 casos detallados en las secciones anteriores, aqui se documentan 14 casos de verificacion adicionales que aparecen en el video. Se incluyen con la misma nomenclatura y estructura de los casos anteriores, para que el documento tenga los 91 casos mencionados en la presentacion. Cada caso indica el procedimiento, el resultado observado y su estado.
 
 | Caso | Que se muestra en el video | Datos o procedimiento | Resultado verificado | Estado |
 |---|---|---|---|---|
@@ -177,4 +177,4 @@ Ademas de los 77 casos detallados en las secciones anteriores, el video presenta
 | 6.13 | Empate exacto entre hoteles | Cargar `datos/hoteles_empate.csv` y `datos/ocupacion_empate.csv` | Buritaca y Don Diego quedan en 48.0 %; Buritaca aparece primero como mayor y menor por orden de carga | OK |
 | 6.14 | Verificacion de limites y errores corregidos | Revisar los casos de fechas extremas, punto y coma, empate y respuesta de guardado | Los limites de fecha, el formato de nombres, los empates y el guardado quedan protegidos sin cerrar el programa | OK |
 
-Con estos 14 casos integrales, el documento contiene 77 casos detallados mas 14 demostraciones del video, para un total de 91 casos documentados.
+Con estos 14 casos adicionales, el documento contiene 91 casos de verificacion documentados.
