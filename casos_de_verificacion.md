@@ -155,3 +155,26 @@ Por ultimo, probamos validaciones del menu principal y la opcion 7 (salir):
 | 5.16 | Volver a cargar lo guardado | Abrir el programa de nuevo, opcion 6 con `hoteles_guardados.csv` y `ocupacion_guardada.csv`, y ver informe de Minca | Carga los 2 hoteles y 4 dias; Minca aparece con 20 noches vendidas | OK |
 
 La opcion de guardar al salir fue el requisito adicional que decidimos incluir como equipo para poder conservar los datos entre una ejecucion y otra sin tener que digitar todo de nuevo.
+
+## 6. Casos adicionales mostrados en el video
+
+Ademas de los 77 casos detallados en las secciones anteriores, el video presenta 14 demostraciones integrales. Se incluyen aqui para que el documento tenga los 91 casos mencionados en la presentacion. Estas demostraciones recorren el programa completo y tambien dejan evidencia de los mensajes y archivos que se muestran en pantalla.
+
+| Caso | Que se muestra en el video | Datos o procedimiento | Resultado verificado | Estado |
+|---|---|---|---|---|
+| 6.1 | Rechazo de un hotel sin habitaciones | Opcion 1, Sol Caribe Minca, 0 habitaciones, 2026/11/1 | Rechaza la creacion y muestra que debe tener al menos una habitacion habilitada | OK |
+| 6.2 | Creacion correcta de un hotel | Opcion 1, Sol Caribe Minca, 20 habitaciones, 2026/11/1 | Crea el hotel y avisa que queda sin dias registrados | OK |
+| 6.3 | Carga de hoteles desde CSV | Opcion 6 con `datos/hoteles_enunciado.csv` | Carga 2 hoteles y reporta las 5 lineas descartadas por los errores del archivo | OK |
+| 6.4 | Carga de ocupacion desde CSV | Opcion 6 con `datos/ocupacion_enunciado.csv` | Carga 9 dias y reporta las 5 lineas descartadas por los errores del archivo | OK |
+| 6.5 | Registro del primer dia | Crear Minca y entrar a opcion 2 | Calcula y muestra el dia 2026-11-01 antes de pedir las habitaciones ocupadas | OK |
+| 6.6 | Rechazo y correccion de ocupacion | En el registro de Minca, escribir 21 y luego 11 | Rechaza 21 por superar la capacidad, vuelve a pedir el mismo dia y acepta 11 | OK |
+| 6.7 | Simulacion de varios dias | Opcion 3, Minca, 3 dias, minimo 10 y maximo 20 | Agrega 3 valores aleatorios dentro del rango 10 a 20 | OK |
+| 6.8 | Informe estadistico completo | Opcion 4 con Sol Caribe Rodadero cargado desde el enunciado | Muestra 5 dias, 256 noches, promedio 51.2, 64.0 % y desviacion 19.78 | OK |
+| 6.9 | Comparacion entre hoteles | Opcion 5 con Rodadero, Taganga y Minca | Compara los hoteles con dias registrados e ignora cualquier hotel sin dias | OK |
+| 6.10 | Validacion de la respuesta al guardar | Opcion 7, responder `si` y luego `s` | Rechaza `si` por no ser una respuesta valida y vuelve a preguntar hasta recibir `s` o `n` | OK |
+| 6.11 | Creacion de archivos de guardado | Confirmar `s` en la opcion 7 | Genera `hoteles_guardados.csv` y `ocupacion_guardada.csv` | OK |
+| 6.12 | Recuperacion de la informacion guardada | Volver a abrir el programa y cargar los dos archivos generados | Recupera 3 hoteles y 13 dias sin descartar lineas | OK |
+| 6.13 | Empate exacto entre hoteles | Cargar `datos/hoteles_empate.csv` y `datos/ocupacion_empate.csv` | Buritaca y Don Diego quedan en 48.0 %; Buritaca aparece primero como mayor y menor por orden de carga | OK |
+| 6.14 | Verificacion de limites y errores corregidos | Revisar los casos de fechas extremas, punto y coma, empate y respuesta de guardado | Los limites de fecha, el formato de nombres, los empates y el guardado quedan protegidos sin cerrar el programa | OK |
+
+Con estos 14 casos integrales, el documento contiene 77 casos detallados mas 14 demostraciones del video, para un total de 91 casos documentados.
