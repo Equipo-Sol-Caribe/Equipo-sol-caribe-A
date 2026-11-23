@@ -7,7 +7,7 @@ Equipo: Miguel Vergara, Jhonatan Gonzales, Estefany Idarraga y Juan Montes.
 
 ## 1. Cómo trabajamos
 
-Dividimos el programa en cuatro incrementos, que son los mismos milestones del repositorio. Cada incremento junta requisitos que dependen entre sí, y en cada uno pasamos por las cuatro actividades del ciclo: análisis, diseño, codificación y verificación. La especificación final de cada requisito está en el documento de análisis, y los casos con su salida esperada están en `casos_de_verificaci_n_sol_caribe.md`.
+Dividimos el programa en cuatro incrementos, que son los mismos milestones del repositorio. Cada incremento junta requisitos que dependen entre sí, y en cada uno pasamos por las cuatro actividades del ciclo: análisis, diseño, codificación y verificación. La especificación final de cada requisito está en el documento de análisis, y los casos con su salida esperada están en `casos_de_verificacion.md`.
 
 Usamos Claude en todo el proceso, como piden los términos. El detalle de cada interacción está en el informe de uso de IA. Para contar bien de dónde salió el código: la primera versión completa del programa la generó la IA a partir del enunciado. Después la cambiamos tres veces. Primero la simplificamos al nivel del curso, porque usaba cosas que no vimos y era muy larga. Luego la ajustamos a las reglas de la clase: un solo `return` al final, sin `sum`, `max` ni `min`, y `try / except ValueError` en la interfaz. Por último corregimos lo que salió al probarla. Lo que se describe aquí es esa versión final.
 
@@ -44,7 +44,7 @@ Miguel hizo el paso 1: las dos clases, `crear_hotel`, `buscar_hotel` y el menú.
 
 ### Verificación
 
-Casos 1.1 a 1.16, 2.1 a 2.19 y 5.11 a 5.13 de `casos_de_verificaci_n_sol_caribe.md`. Probamos cada mensaje del requisito 1, el año bisiesto, el cambio de año en el registro (30 de diciembre más 3 días da 2027-01-02), los extremos 0 y 20, y que en la simulación no se lean los datos que faltan después de un error. Todos dan la salida esperada.
+Casos 1.1 a 1.16, 2.1 a 2.19 y 5.11 a 5.13 de `casos_de_verificacion.md`. Probamos cada mensaje del requisito 1, el año bisiesto, el cambio de año en el registro (30 de diciembre más 3 días da 2027-01-02), los extremos 0 y 20, y que en la simulación no se lean los datos que faltan después de un error. Todos dan la salida esperada.
 
 ## 3. Incremento 2: informe del hotel
 
@@ -123,7 +123,7 @@ Casos 5.14 a 5.16: guardar, cerrar el programa, volver a abrirlo y cargar lo gua
 ```text
 business_logic.py           clases Hotel y CadenaHotelera, reglas y cálculos
 user_interface.py           menú, lectura de datos y mensajes en pantalla
-casos_de_verificaci_n_sol_caribe.md    los 77 casos con su salida esperada
+casos_de_verificacion.md    los 77 casos con su salida esperada
 datos/                      los CSV que usan los casos
 ```
 

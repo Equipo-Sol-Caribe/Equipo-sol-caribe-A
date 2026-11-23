@@ -43,10 +43,10 @@ Se indicó que la primera propuesta era demasiado compleja para un curso inicial
 
 ### 4.3 Simplificación de casos
 
-Se pidió reducir el texto de `casos_de_verificaci_n_sol_caribe.md`. Claude lo reorganizó en tablas y casos breves. Durante la revisión se corrigió una expectativa de prueba relacionada con la carga simultánea de hoteles y ocupación.
+Se pidió reducir el texto de `casos_de_verificacion.md`. Claude lo reorganizó en tablas y casos breves. Durante la revisión se corrigió una expectativa de prueba relacionada con la carga simultánea de hoteles y ocupación.
 
 **Decisión:** aceptada con corrección de la expectativa.
-**Evidencia:** [casos de verificación](https://github.com/Equipo-Sol-Caribe/Equipo-sol-caribe-A/blob/main/casos_de_verificaci_n_sol_caribe.md).
+**Evidencia:** [casos de verificación](https://github.com/Equipo-Sol-Caribe/Equipo-sol-caribe-A/blob/main/casos_de_verificacion.md).
 
 ### 4.4 Revisión y corrección
 
@@ -95,7 +95,7 @@ No es verificable con los enlaces quién escribió cada mensaje de Claude. Sí e
 
 - [Código principal](https://github.com/Equipo-Sol-Caribe/Equipo-sol-caribe-A/blob/main/business_logic.py)
 - [Interfaz](https://github.com/Equipo-Sol-Caribe/Equipo-sol-caribe-A/blob/main/user_interface.py)
-- [Casos de verificación](https://github.com/Equipo-Sol-Caribe/Equipo-sol-caribe-A/blob/main/casos_de_verificaci_n_sol_caribe.md)
+- [Casos de verificación](https://github.com/Equipo-Sol-Caribe/Equipo-sol-caribe-A/blob/main/casos_de_verificacion.md)
 - [Informe integral](https://github.com/Equipo-Sol-Caribe/Equipo-sol-caribe-A/blob/main/Producto_2_Informe_Integral.md)
 - [Tablero GitHub](https://github.com/users/leMichael158/projects/1)
 - [Organización y equipo](https://github.com/orgs/Equipo-Sol-Caribe/teams/equipo-sol-caribe/members)
