@@ -13,6 +13,13 @@ Video explicativo
 
 Enlace del video: https://youtu.be/ooW1YHiyC70
 
+Seguimiento del trabajo
+
+- [Issues](https://github.com/Equipo-Sol-Caribe/Equipo-sol-caribe-A/issues)
+- [Milestones](https://github.com/Equipo-Sol-Caribe/Equipo-sol-caribe-A/milestones)
+- [GitHub Projects](https://github.com/users/leMichael158/projects/1)
+- [Historial de commits](https://github.com/Equipo-Sol-Caribe/Equipo-sol-caribe-A/commits/main)
+
 Archivos del proyecto
 
 - `business_logic.py`: tiene las clases `Hotel` y `CadenaHotelera` con la lógica, validaciones, cálculos y lectura/escritura de los archivos CSV.
