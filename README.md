@@ -11,7 +11,7 @@ Integrantes
 
 Video explicativo
 
-Enlace del video: https://universidadmag-my.sharepoint.com/:v:/g/personal/mjvergara_unimagdalena_edu_co/IQCaI8fFjlBrSbxAkX-bZ_TvAQh_a636yrVq7SZY7Ls_M78?e=2WH7UR&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D
+Enlace del video: https://youtu.be/ooW1YHiyC70
 
 Archivos del proyecto
 
@@ -34,3 +34,4 @@ Archivos del proyecto
 5. Ver qué hotel tiene el porcentaje de ocupación más alto y cuál el más bajo.
 6. Cargar hoteles y registros de ocupación desde archivos `.csv` separados por punto y coma (`;`).
 7. Guardar los datos
+
